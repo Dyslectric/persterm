@@ -1,3 +1,3 @@
 #!/bin/sh
-persterm -s
+persterm -s "$@"
 
