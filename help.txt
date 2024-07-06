@@ -1,0 +1,6 @@
+Usage: persterm [options]
+
+  -d, --dir, --directory=DIRECTORY   open the new shell in the given directory
+  -g, --group=TMUX_SESSION_GROUP     set the group that the new session will belong to
+  -n, --name=TMUX_SESSION_NAME       set the name of the new session
+  -h, --help                         display this help message and exit

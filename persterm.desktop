@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=persterm
+Comment=Persistent Terminal
+Icon=utilities-terminal
+Exec=persterm
+Terminal=false
+Type=Application
+
