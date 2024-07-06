@@ -2,7 +2,7 @@
 Name=persterm
 Comment=Persistent Terminal
 Icon=utilities-terminal
-Exec=persterm
+Exec="persterm-spawn"
 Terminal=false
 Type=Application
 
