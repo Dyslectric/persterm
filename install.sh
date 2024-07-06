@@ -6,6 +6,7 @@ mkdir -p ~/.local/bin
 
 cp alacritty.toml bashrc.sh run.sh tmux.conf help.txt ~/.local/share/persterm/
 cp persterm.sh ~/.local/bin/persterm
+cp persterm-spawn.sh ~/.local/bin/persterm-spawn
 cp persterm.desktop ~/.local/share/applications/
 
 chmod +x ~/.local/share/persterm/run.sh

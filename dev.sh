@@ -3,6 +3,7 @@
 declare -A files_map
 
 files_map["./persterm.sh"]="$HOME/.local/bin/persterm"
+files_map["./persterm-spawn.sh"]="$HOME/.local/bin/persterm-spawn"
 files_map["./persterm.desktop"]="$HOME/.local/share/applications/persterm.desktop"
 files_map["./run.sh"]="$HOME/.local/share/persterm/run.sh"
 files_map["./bashrc.sh"]="$HOME/.local/share/persterm/bashrc"
@@ -20,6 +21,8 @@ while read FILE; do
   
   echo "Copying $FILE to ${files_map[$FILE]}"
   cp "$FILE" "${files_map[$FILE]}"
+
+  [[ "${files_map[$FILE]}" =~ "$HOME/.local/bin/" ]] && chmod +x "${files_map[$FILE]}"
 done
 
 wait
