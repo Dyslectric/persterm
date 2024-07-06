@@ -15,14 +15,12 @@ inotifywait -m -e create,modify . --format "%w%f" |
 while read FILE; do
   for SRC_PATH in "${!files_map[@]}"; do
     if [[ "$FILE" == "$SRC_PATH" ]]; then
+      echo "Copying $FILE to ${files_map[$FILE]}"
       cp "$FILE" "${files_map[$FILE]}"
+      [[ "${files_map[$FILE]}" =~ "$HOME/.local/bin/" ]] && chmod +x "${files_map[$FILE]}"
     fi
   done
   
-  echo "Copying $FILE to ${files_map[$FILE]}"
-  cp "$FILE" "${files_map[$FILE]}"
-
-  [[ "${files_map[$FILE]}" =~ "$HOME/.local/bin/" ]] && chmod +x "${files_map[$FILE]}"
 done
 
 wait
