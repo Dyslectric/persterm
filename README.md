@@ -65,4 +65,5 @@ Default binds: Uses default tmux binds with the following additions:
 
 - Make app work with any terminal emulator (or at least all common ones)
 - Allow use of alternative shells (zsh, fish, powershell, etc.)
+- Allow for quick creation of XDG Desktop entries for project workspaces
 
