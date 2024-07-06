@@ -31,10 +31,21 @@ Usage details can be found by running ```persterm --help```:
 ```
 Usage: persterm [options]
 
+  -s, --spawn                        open the session in a new $TERMINAL window
   -d, --dir, --directory=DIRECTORY   open the new shell in the given directory
   -g, --group=TMUX_SESSION_GROUP     set the group that the new session will belong to
   -n, --name=TMUX_SESSION_NAME       set the name of the new session
   -h, --help                         display this help message and exit
+
+If run without any options, a new tmux session will be created in the session
+group: $USER, with a new shell opened in the $HOME directory.
+
+The desktop application will open a new shell window in the $USER session group
+in the $HOME directory. The session name will be a random string.
+
+Default binds: Uses default tmux binds with the following additions:
+
+  C-b C-n: New window in current session group with new shell
 ```
 
 ## Current Features
