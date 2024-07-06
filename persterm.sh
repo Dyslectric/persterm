@@ -27,6 +27,10 @@ while [[ $# -gt 0 ]]; do
       showhelp
       exit
       ;;
+    -s|--spawn)
+      SPAWN="true"
+      shift
+      ;;
   esac
 done
 
@@ -36,23 +40,27 @@ done
 # Get a random session name if name not defined with argument
 [[ -z "$SESSION_NAME" ]] && SESSION_NAME=$(uuidgen | cut -c1-8)
 
-runcommand="~/.local/share/persterm/run.sh -n $SESSION_NAME -g $SESSION_GROUP "
+runcommand="$HOME/.local/share/persterm/run.sh -n $SESSION_NAME -g $SESSION_GROUP "
 
 [[ -n "$PERSTERM_DIR" ]] && runcommand+="-d $PERSTERM_DIR "
 
-if [[
-  "$TERMINAL" == "kitty" ||
-    "$TERMINAL" == "alacritty" ||
-    "$TERMINAL" == "wezterm" ||
-    "$TERMINAL" == "st"
-      ]];
-then
-  $TERMINAL -e bash -ic "$runcommand" ; exit
+if [[ $SPAWN == "true" ]]; then
+  if [[
+    "$TERMINAL" == "kitty" ||
+      "$TERMINAL" == "alacritty" ||
+      "$TERMINAL" == "wezterm" ||
+      "$TERMINAL" == "st"
+        ]];
+  then
+    $TERMINAL -e bash -ic "$runcommand" ; exit
+  else
+    echo '$TERMINAL is not defined as one of the following:'
+    echo '  - ' 'kitty'
+    echo '  - ' 'alacritty'
+    echo '  - ' 'wezterm'
+    echo '  - ' 'st'
+  fi
 else
-  echo '$TERMINAL is not defined as one of the following:'
-  echo '  - ' 'kitty'
-  echo '  - ' 'alacritty'
-  echo '  - ' 'wezterm'
-  echo '  - ' 'st'
+  $runcommand
 fi
 
