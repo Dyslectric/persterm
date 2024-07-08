@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 showhelp() {
   echo ""
@@ -44,23 +44,65 @@ runcommand="$HOME/.local/share/persterm/run.sh -n $SESSION_NAME -g $SESSION_GROU
 
 [[ -n "$PERSTERM_DIR" ]] && runcommand+="-d $PERSTERM_DIR "
 
+persterm_init () {
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      -d|--dir|--directory)
+        PERSTERM_DIR="$2"
+        shift
+        shift
+        ;;
+      -g|--group)
+        SESSION_GROUP="$2"
+        shift
+        shift
+        ;;
+      -n|--name)
+        SESSION_NAME="$2"
+        shift
+        shift
+        ;;
+    esac
+  done
+
+  FIRST_SESSION=$([[ -z "$(tmux list-sessions 2> /dev/null | grep "(group $SESSION_GROUP)")" ]] && echo true)
+  
+  # Wait for a moment and then send a new-window command to the new session client
+  # if it is not the first session in the group
+  if [[ "$FIRST_SESSION" != "true" ]]; then
+    sleep 0.01 &&
+      tmux send-keys -K C-b ':' &&
+      tmux send-keys -K 'new-window' C-m &
+  fi
+  
+  [[ -z "$PERSTERM_DIR" ]] && PERSTERM_DIR="$HOME"
+  
+  # Create a new session with the given group and session names
+  tmux -f "$HOME/.local/share/persterm/tmux.conf" \
+    new-session \
+    -c "$PERSTERM_DIR" \
+    -t "$SESSION_GROUP" -s "$SESSION_NAME"
+}
+
 if [[ $SPAWN == "true" ]]; then
   if [[
     "$TERMINAL" == "kitty" ||
       "$TERMINAL" == "alacritty" ||
       "$TERMINAL" == "wezterm" ||
-      "$TERMINAL" == "st"
+      "$TERMINAL" == "st" ||
+      "$TERMINAL" == "konsole"
         ]];
   then
-    $TERMINAL -e bash -ic "$runcommand" ; exit
+    $TERMINAL -e bash -ic "$(declare -f persterm_init) ; persterm_init -g $SESSION_GROUP -n $SESSION_NAME -d $PERSTERM_DIR" ; exit
   else
     echo '$TERMINAL is not defined as one of the following:'
     echo '  - ' 'kitty'
     echo '  - ' 'alacritty'
     echo '  - ' 'wezterm'
     echo '  - ' 'st'
+    echo '  - ' 'konsole'
   fi
 else
-  $runcommand
+  persterm_init
 fi
 
