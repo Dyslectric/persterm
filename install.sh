@@ -4,7 +4,7 @@ mkdir -p ~/.local/share/persterm
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/bin
 
-cp alacritty.toml bashrc.sh run.sh tmux.conf help.txt ~/.local/share/persterm/
+cp alacritty.toml bashrc.sh tmux.conf help.txt ~/.local/share/persterm/
 cp persterm.sh ~/.local/bin/persterm
 cp persterm-spawn.sh ~/.local/bin/persterm-spawn
 cp persterm.desktop ~/.local/share/applications/
