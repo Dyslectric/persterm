@@ -48,6 +48,21 @@ Default binds: Uses default tmux binds with the following additions:
   C-b C-n: New window in current session group with new shell
 ```
 
+## Configuration
+
+Files and scripts utilized by the applications can be found in your
+~/.local/share/persterm/ directory. The files include:
+  - bashrc.sh: an init hook sourced alongside your default .bashrc
+    - by default includes tmux window renaming functionality for bash
+  - tmux.conf: the configuration persterm uses when running tmux
+    - persterm does not load your default ~/.tmux.conf file
+  - Specific terminal configurations (I don't want to have to use these, but if
+  I must, I will do my best to load default configurations alongside the
+  persterm-specific functionality.):
+    - kitty.conf
+    - alacritty.toml
+    - etc.
+
 ## Current Features
 
 - Install local bin into .bashrc PATH
