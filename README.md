@@ -75,6 +75,8 @@ Files and scripts utilized by the applications can be found in your
     - Alacritty
     - Wezterm
     - st
+    - kgx (Gnome Console)
+    - konsole (KDE Default)
 
 ## Planned Features
 

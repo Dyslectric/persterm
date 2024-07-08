@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 showhelp() {
   echo ""
@@ -90,6 +90,7 @@ if [[ $SPAWN == "true" ]]; then
       "$TERMINAL" == "alacritty" ||
       "$TERMINAL" == "wezterm" ||
       "$TERMINAL" == "st" ||
+      "$TERMINAL" == "kgx" ||
       "$TERMINAL" == "konsole"
         ]];
   then
@@ -100,7 +101,8 @@ if [[ $SPAWN == "true" ]]; then
     echo '  - ' 'alacritty'
     echo '  - ' 'wezterm'
     echo '  - ' 'st'
-    echo '  - ' 'konsole'
+    echo '  - ' 'kgx        (Gnome Console)'
+    echo '  - ' 'konsole    (KDE Default)'
   fi
 else
   persterm_init
