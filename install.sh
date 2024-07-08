@@ -9,7 +9,6 @@ cp persterm.sh ~/.local/bin/persterm
 cp persterm-spawn.sh ~/.local/bin/persterm-spawn
 cp persterm.desktop ~/.local/share/applications/
 
-chmod +x ~/.local/share/persterm/run.sh
 chmod +x ~/.local/bin/persterm
 
 if [[ -z "$(grep 'export.*~/.local/bin' <(echo $PATH))" ]]; then
