@@ -67,3 +67,8 @@ Default binds: Uses default tmux binds with the following additions:
 - Allow use of alternative shells (zsh, fish, powershell, etc.)
 - Allow for quick creation of XDG Desktop entries for project workspaces
 
+## Known Bugs and Issues
+
+- Wezterm closes the tmux window that it is focussed on when it closes (I am not sure how to fix this behavior)
+- Kitty won't let you close the terminal immediately by default, should be fixable with configuration
+
