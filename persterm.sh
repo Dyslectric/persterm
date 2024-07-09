@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 showhelp() {
   echo ""
@@ -59,13 +59,17 @@ persterm_init () {
 
   FIRST_SESSION=$([[ -z "$(tmux list-sessions 2> /dev/null | grep "(group $SESSION_GROUP)")" ]] && echo true)
 
-  SHELL_COMMAND='bash --rcfile <(cat "$HOME/.bashrc" "$HOME/.local/share/persterm/bashrc.sh")'
+  SHELL_COMMAND='bash --rcfile <(cat "$HOME/.bashrc" "$HOME/.local/share/persterm/bashrc.sh") -i'
   
   # Wait for a moment and open a new window with the desired shell command
   if [[ "$FIRST_SESSION" != "true" ]]; then
     sleep 0.01 &&
       tmux send-keys -K C-b ':' &&
       tmux send-keys -K "new-window '$SHELL_COMMAND'" C-m &
+  else
+    sleep 0.1 &&
+      tmux send-keys "$SHELL_COMMAND && exit" &&
+      tmux send-keys C-m &
   fi
   
   [[ -z "$PERSTERM_DIR" ]] && PERSTERM_DIR="$HOME"
@@ -93,7 +97,6 @@ if [[ $SPAWN == "true" ]]; then
     $TERMINAL \
       $([[ "$TERMINAL" == "kitty" ]] && echo "-c $HOME/.local/share/persterm/kitty.conf") \
       -e bash \
-      --rcfile <(cat "$HOME/.bashrc" "$HOME/.local/share/persterm/bashrc.sh") \
       -ic \
       "$(declare -f persterm_init) ; \
       persterm_init $SESSION_NAME $SESSION_GROUP $PERSTERM_SHARE_HIST $PERSTERM_DIR" ;
