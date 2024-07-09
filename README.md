@@ -93,4 +93,7 @@ sure how to fix this behavior)
   it would be nice if there was a way to make it not happen at all
 - Kitty won't let you close the terminal immediately by default, should be
 fixable with configuration (fixed [c136725](https://github.com/Dyslectric/persterm/commit/c136725f281e6c35e0b2b35ed3b284fd0ffe5444))
+- If a new terminal emulator window is created at a different buffer size than
+the one that the window it opens to initially, it will change the size of the
+window.
 
