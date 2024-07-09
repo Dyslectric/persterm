@@ -59,18 +59,18 @@ persterm_init () {
 
   FIRST_SESSION=$([[ -z "$(tmux list-sessions 2> /dev/null | grep "(group $SESSION_GROUP)")" ]] && echo true)
 
-  SHELL_COMMAND='bash --rcfile <(cat "$HOME/.bashrc" "$HOME/.local/share/persterm/bashrc.sh") -i'
+  SHELL_COMMAND='bash --rcfile <(cat "$HOME/.bashrc" "$HOME/.local/share/persterm/bashrc.sh")'
   
   # Wait for a moment and open a new window with the desired shell command
   if [[ "$FIRST_SESSION" != "true" ]]; then
     sleep 0.01 &&
       tmux send-keys -K C-b ':' &&
-      tmux send-keys -K "new-window '$SHELL_COMMAND'" C-m &
+      tmux send-keys -K "new-window '$SHELL_COMMAND'" C-m
   else
-    sleep 0.1 &&
-      tmux send-keys "$SHELL_COMMAND && exit" &&
-      tmux send-keys C-m &
-  fi
+    sleep 0.01 &&
+      tmux send-keys "clear && $SHELL_COMMAND && exit" &&
+      tmux send-keys C-m
+  fi &
   
   [[ -z "$PERSTERM_DIR" ]] && PERSTERM_DIR="$HOME"
   
