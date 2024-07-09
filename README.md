@@ -91,5 +91,5 @@ sure how to fix this behavior)
   - This doesn't happen if something is running in the window. This is cool but
   it would be nice if there was a way to make it not happen at all
 - Kitty won't let you close the terminal immediately by default, should be
-fixable with configuration
+fixable with configuration (fixed [c136725](https://github.com/Dyslectric/persterm/commit/c136725f281e6c35e0b2b35ed3b284fd0ffe5444))
 
