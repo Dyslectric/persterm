@@ -45,7 +45,8 @@ in the $HOME directory. The session name will be a random string.
 
 Default binds: Uses default tmux binds with the following additions:
 
-  C-b C-n: New window in current session group with new shell
+  C-b C-n: New terminal emulator window with new tmux window in current session
+  group with new shell instance
 ```
 
 ## Configuration
