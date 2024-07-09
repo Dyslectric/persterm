@@ -69,7 +69,8 @@ Files and scripts utilized by the applications can be found in your
 - Install local bin into .bashrc PATH
 - Bash renames tmux window to working directory basename
 - Custom tmux interface configuration
-- Tmux hotkey for opening new window with new shell
+- Tmux hotkey for opening new terminal emulator window with new shell in tmux
+group
 - User-wide tmux session group freedesktop application entry
 - Currently supports the following terminal emulators: (uses $TERMINAL)
     - Kitty
@@ -78,12 +79,14 @@ Files and scripts utilized by the applications can be found in your
     - st
     - kgx (Gnome Console)
     - konsole (KDE Default)
+- Share bash histories by default (turn off with ```--share-history=false```)
 
 ## Planned Features
 
 - Make app work with any terminal emulator (or at least all common ones)
 - Allow use of alternative shells (zsh, fish, powershell, etc.)
 - Allow for quick creation of XDG Desktop entries for project workspaces
+  - Perhaps use a command like ```persterm-workspace```
 
 ## Known Bugs and Issues
 
