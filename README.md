@@ -79,7 +79,7 @@ group
     - st
     - kgx (Gnome Console)
     - konsole (KDE Default)
-- Share bash histories by default (turn off with ```--share-history=false```)
+- Share bash histories by default (turn off with ```--share-history false```)
 
 ## Planned Features
 
