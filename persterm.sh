@@ -86,8 +86,7 @@ persterm_init () {
 
 if [[ $SPAWN == "true" ]]; then
   if [[
-    "$TERMINAL" == "kitty" ||
-      "$TERMINAL" == "alacritty" ||
+    "$TERMINAL" == "alacritty" ||
       "$TERMINAL" == "wezterm" ||
       "$TERMINAL" == "st" ||
       "$TERMINAL" == "kgx" ||
@@ -95,6 +94,14 @@ if [[ $SPAWN == "true" ]]; then
         ]];
   then
     $TERMINAL -e bash -ic "$(declare -f persterm_init) ; persterm_init -g $SESSION_GROUP -n $SESSION_NAME -d $PERSTERM_DIR" ; exit
+  elif [[
+    "$TERMINAL" == "kitty"
+    ]];
+  then
+    $TERMINAL \
+      -c "$HOME/.local/share/persterm/kitty.conf" \
+      -e bash -ic \
+      "$(declare -f persterm_init) ; persterm_init -g $SESSION_GROUP -n $SESSION_NAME -d $PERSTERM_DIR" ; exit
   else
     echo '$TERMINAL is not defined as one of the following:'
     echo '  - ' 'kitty'

@@ -86,6 +86,10 @@ Files and scripts utilized by the applications can be found in your
 
 ## Known Bugs and Issues
 
-- Wezterm closes the tmux window that it is focussed on when it closes (I am not sure how to fix this behavior)
-- Kitty won't let you close the terminal immediately by default, should be fixable with configuration
+- Wezterm closes the tmux window that it is focussed on when it closes (I am not
+sure how to fix this behavior)
+  - This doesn't happen if something is running in the window. This is cool but
+  it would be nice if there was a way to make it not happen at all
+- Kitty won't let you close the terminal immediately by default, should be
+fixable with configuration
 
